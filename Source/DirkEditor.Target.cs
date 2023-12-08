@@ -5,12 +5,11 @@ using System.Collections.Generic;
 
 public class DirkEditorTarget : TargetRules
 {
-	public DirkEditorTarget(TargetInfo Target) : base(Target)
+	public DirkEditorTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
-		IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_3;
 		ExtraModuleNames.Add("Dirk");
-		ExtraModuleNames.Add("DirkEditor");
 	}
 }
