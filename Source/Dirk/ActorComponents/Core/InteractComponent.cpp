@@ -32,6 +32,7 @@ void UInteractComponent::OnSphereBeginOverlap(
 	{
 		OtherActor = InteractingActor;
 
+		// Checks if component needs input
 		if (bRequireInput)
 		{
 			// Bind Action

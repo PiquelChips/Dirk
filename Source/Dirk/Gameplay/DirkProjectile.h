@@ -14,24 +14,24 @@ class ADirkProjectile : public AActor
 {
 	GENERATED_BODY()
 
-	/** Sphere collision component */
+	// Sphere collision component
 	UPROPERTY(VisibleDefaultsOnly, Category=Projectile)
 	USphereComponent* CollisionComp;
 
-	/** Projectile movement component */
+	// Projectile movement component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
 public:
 	ADirkProjectile();
 
-	/** called when projectile hits something */
+	// called when projectile hits something 
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-	/** Returns CollisionComp subobject **/
+	// Returns CollisionComp subobject
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
-	/** Returns ProjectileMovement subobject **/
+	// Returns ProjectileMovement subobject
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
 };
 
