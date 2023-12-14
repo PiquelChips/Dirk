@@ -7,7 +7,7 @@
 #include "GameFramework/PlayerController.h"
 #include "DirkPlayerController.generated.h"
 
-UENUM()
+/*UENUM()
 enum class ECharacterType : int8
 {
 	// Manny Character Type
@@ -15,7 +15,7 @@ enum class ECharacterType : int8
 
 	// Quinn Character Type
 	Quinn = 1,
-};
+};*/
 
 UCLASS()
 class DIRK_API ADirkPlayerController : public APlayerController
