@@ -1,5 +1,8 @@
-TODO:
+V.1:
+- Setup Localisation
 - Make UI
 - Make Levels
 - Setup Savegames
-- Setup Localisation
+
+WB_MainMenu:
+- Add Validation for Level on Join event
