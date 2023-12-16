@@ -1,9 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "DirkProjectile.h"
-#include "GameFramework/ProjectileMovementComponent.h"
-#include "Components/SphereComponent.h"
 
+
+// Constructor sets up components
 ADirkProjectile::ADirkProjectile() 
 {
 	// Use a sphere as a simple collision representation
@@ -31,9 +31,10 @@ ADirkProjectile::ADirkProjectile()
 	InitialLifeSpan = 3.0f;
 }
 
+// Called when projectile hits object and adds impulse on impact
 void ADirkProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	// Only add impulse and destroy projectile if we hit a physics
+	// Only add impulse and destroy projectile if we hit a physics actor
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());

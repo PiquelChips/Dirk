@@ -41,6 +41,3 @@ Gameplay:
 - Create enum for item type (link to anims) in pickup component
 - Add water and swimming
 - Vehicles/mounts:
-
-C++ and Blueprints:
-- Clean up and comment code

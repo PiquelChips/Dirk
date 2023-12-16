@@ -2,6 +2,7 @@
 
 #include "DirkCharacter.h"
 
+// Constructer, blocks creation of mesh component
 ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer.DoNotCreateDefaultSubobject(ACharacter::MeshComponentName))
 {
@@ -31,6 +32,7 @@ ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
 	DirkCharacterMovement->AirControl = 0.4f;
 }
 
+// Begin play, sets up input
 void ADirkCharacter::BeginPlay()
 {
 	// Call the base class

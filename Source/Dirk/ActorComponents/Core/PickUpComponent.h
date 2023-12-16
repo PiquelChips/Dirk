@@ -19,17 +19,14 @@ class DIRK_API UPickUpComponent : public UInteractComponent
 {
 	GENERATED_BODY()
 
+	// Constructor
+	UPickUpComponent();
+
 public:
 
 	// Fires on use
 	UPROPERTY(BlueprintAssignable)
 	FOnUse OnUse;
-	
-	// Sound to play when picked up
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
-	USoundBase* PickUpSound;
-
-	UPickUpComponent();
 
 protected:
 
@@ -45,26 +42,43 @@ protected:
 	UFUNCTION()
 	void OnPickUp(AActor* OtherActor);
 	
-	// should delay interactability
+	// Interactability
+
+	// Should delay interactability
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bShouldDelayCanInteract = true;
-
 	// Time before can pickup
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TimeBeforePickupable = 2.f;
-
+	// Handle for Pickup-timer
+	FTimerHandle PickupTimerHandle;
+	// Called by timer
+	void TimerEnd();
+	
 private:
+
+	// Input
+
 	// MappingContext
 	UPROPERTY(EditAnywhere, Category="PickUp/Drop")
 	UInputMappingContext* UseMappingContext;
-
 	// Use Input Action
 	UPROPERTY(EditAnywhere, Category="PickUp/Drop")
 	UInputAction* UseAction;
-
 	// Drop Input Action
 	UPROPERTY(EditAnywhere, Category="PickUp/Drop")
 	UInputAction* DropAction;
+	// Unbinds drop and use actions
+	void UnbindActions();
+	
+	// Input Binding Handles
+	UPROPERTY()
+	uint32 UseBindingHandle;
+	UPROPERTY()
+	uint32 DropBindingHandle;
+
+	// Respawns new version
+	void Respawn();
 
 	// Static class to spawn on drop
 	UPROPERTY(EditAnywhere, Category="PickUp/Drop")
@@ -79,27 +93,14 @@ private:
 	// Fired when drop key is pressed
 	void Drop();
 
-	// Respawns new version
-	void Respawn();
-
-	// Unbinds drop and use actions
-	void UnbindActions();
-
 	// Fired when drop key is pressed
 	UFUNCTION(Server, Reliable, WithValidation)
 	void Server_Drop();
 	bool Server_Drop_Validate();
 	void Server_Drop_Implementation();
 	
-	// Input Binding Handles
-	UPROPERTY()
-	uint32 UseBindingHandle;
-	UPROPERTY()
-	uint32 DropBindingHandle;
+	// Sound to play when picked up
+	UPROPERTY(EditAnywhere, Category="Audio")
+	USoundBase* PickUpSound;
 
-	// Handle for Pickup-timer
-	FTimerHandle PickupTimerHandle;
-
-	// Called by timer
-	void TimerEnd();
 };

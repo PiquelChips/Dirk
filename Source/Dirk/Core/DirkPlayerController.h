@@ -4,35 +4,25 @@
 
 #include "CoreMinimal.h"
 
-#include "DirkCharacter.h"
 #include "GameFramework/PlayerController.h"
 #include "EnhancedInputSubsystems.h"
 
 #include "DirkPlayerController.generated.h"
-
-/*UENUM()
-enum class ECharacterType : int8
-{
-	// Manny Character Type
-	Manny = 0,
-
-	// Quinn Character Type
-	Quinn = 1,
-};*/
 
 UCLASS()
 class DIRK_API ADirkPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-public:
-
 protected:
 
 	// Begin play function
 	virtual void BeginPlay() override;
 
+private:
+
 	// Input
+	
 	// Default Mapping Context
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputMappingContext* DefaultMappingContext;

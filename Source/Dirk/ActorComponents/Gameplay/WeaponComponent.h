@@ -18,26 +18,59 @@ class DIRK_API UWeaponComponent : public UPickUpComponent
 {
 	GENERATED_BODY()
 
+	// Constructor
 	UWeaponComponent();
 	
-public:
+protected:
 
+	// Strats gameplay for this component
+	virtual void BeginPlay() override;
+	
+	// Ticks (during cooldown)
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+	// Colldown
+
+	// Cooldown time
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	float Cooldown = 0.f;
+	// If the cooldown is ongoing
+	UPROPERTY(BlueprintReadOnly)
+	bool bCooldown = false;
+	// Leftovercooldown time
+	UPROPERTY(BlueprintReadOnly)
+	float CooldownCurrent;
+	
+private:
+
+	// Projectile
+	
+	// Projectile Speed
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	float ProjectileSpeed = 3000.f;
+
+	// Muzzle offset
+	UPROPERTY(EditAnywhere, Category="Projectile")
+	FVector Offset = FVector(5, 60, 10);
+	
 	// Projectile class to spawn
 	UPROPERTY(EditAnywhere, Category="Projectile")
 	TSubclassOf<class ADirkProjectile> ProjectileClass;
 
 	// Sound to play when fired
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	UPROPERTY(EditAnywhere, Category="Audio")
 	USoundBase* FireSound;
 
 	// AnimMontage to play when fired
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
+	UPROPERTY(EditAnywhere, Category="Animation")
 	UAnimMontage* FireAnimation;
 
 	// Fired when weapon is fired
 	void Fire(ADirkCharacter* DirkCharacter);
 	// Actually fires weapon
 	void Fire_Implementation(ADirkCharacter* DirkCharacter);
+
+	// Server RPC
 
 	// Server RPC to fire projectile
 	UFUNCTION(Server, Reliable, WithValidation)
@@ -51,33 +84,4 @@ public:
 	bool Multi_Fire_Validate();
 	void Multi_Fire_Implementation();
 	
-	// Projectile
-	
-	// Projectile Speed
-	UPROPERTY(EditAnywhere, Category="Projectile")
-	float ProjectileSpeed = 3000.f;
-
-	// Muzzle offset
-	UPROPERTY(EditAnywhere, Category="Projectile")
-	FVector Offset = FVector(5, 60, 10);
-
-	// Cooldown
-	UPROPERTY(EditAnywhere, Category="Projectile")
-	float Cooldown = 0.f;
-
-	// if the cooldown is ongoing
-	UPROPERTY(BlueprintReadOnly)
-	bool bCooldown = false;
-
-	// leftovercooldown time
-	UPROPERTY(BlueprintReadOnly)
-	float CooldownCurrent;
-	
-	// Ticks (during cooldown)
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-protected:
-	// Strats gameplay for this component
-	virtual void BeginPlay() override;
-
 };

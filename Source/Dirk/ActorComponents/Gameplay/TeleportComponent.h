@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "../Core/InteractComponent.h"
+#include "Math/TransformNonVectorized.h"
 
 #include "TeleportComponent.generated.h"
 
@@ -12,13 +14,16 @@ class DIRK_API UTeleportComponent : public UInteractComponent
 {
 	GENERATED_BODY()
 	
-public:
+protected:
+
 	// Begin play
 	virtual void BeginPlay();
 
 	// Location to teleport to
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	FVector TeleportDestination;
+
+private:
 
 	// Teleport
 	UFUNCTION(Server, Reliable, WithValidation)
