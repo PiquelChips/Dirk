@@ -1,14 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "DirkCharacter.h"
-#include "../Gameplay/DirkProjectile.h"
-#include "Animation/AnimInstance.h"
-#include "Camera/CameraComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "EnhancedInputComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "EnhancedInputSubsystems.h"
-#include "UObject/UObjectGlobals.h"
 
 ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer.DoNotCreateDefaultSubobject(ACharacter::MeshComponentName))
@@ -41,7 +33,7 @@ ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
 
 void ADirkCharacter::BeginPlay()
 {
-	// Call the base class  
+	// Call the base class
 	Super::BeginPlay();
 
 	//Add Input Mapping Context
@@ -49,10 +41,9 @@ void ADirkCharacter::BeginPlay()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+			Subsystem->AddMappingContext(PawnMappingContext, 0);
 		}
 	}
-
 }
 
 // Setup input

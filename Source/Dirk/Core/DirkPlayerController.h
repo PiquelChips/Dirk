@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "DirkCharacter.h"
 #include "GameFramework/PlayerController.h"
+#include "EnhancedInputSubsystems.h"
+
 #include "DirkPlayerController.generated.h"
 
 /*UENUM()
@@ -24,11 +27,17 @@ class DIRK_API ADirkPlayerController : public APlayerController
 
 public:
 
-	// Character Class
-	UPROPERTY(EditAnywhere, Category=Character)
-	UClass* CharacterClass = ADirkCharacter::StaticClass();
-
 protected:
-	virtual void BeginPlay();
+
+	// Begin play function
+	virtual void BeginPlay() override;
+
+	// Input
+	// Default Mapping Context
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputMappingContext* DefaultMappingContext;
+	// Menu Action
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	class UInputAction* MenuAction;
 	
 };

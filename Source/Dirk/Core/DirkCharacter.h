@@ -3,8 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "../Gameplay/DirkProjectile.h"
+#include "Animation/AnimInstance.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "EnhancedInputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "UObject/UObjectGlobals.h"
+
 #include "DirkCharacter.generated.h"
 
 class UInputComponent;
@@ -38,7 +48,7 @@ class ADirkCharacter : public ACharacter
 
 	// Mapping Context
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	class UInputMappingContext* DefaultMappingContext;
+	class UInputMappingContext* PawnMappingContext;
 	// Jump Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* JumpAction;
@@ -48,6 +58,9 @@ class ADirkCharacter : public ACharacter
 	// Look Action
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
+	// Menu Action
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* MenuAction;
 	
 public:
 	ADirkCharacter(const FObjectInitializer& ObjectInitializer);

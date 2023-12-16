@@ -2,15 +2,12 @@
 
 #include "DirkPlayerController.h"
 
-#include "DirkCharacter.h"
-
 void ADirkPlayerController::BeginPlay()
 {
-    // Set the pawn
-	RemovePawnTickDependency(GetPawn());
-    APawn* NewPawn = GetPawn();
-	NewPawn = Cast<APawn>(CharacterClass);
-	AttachToPawn(GetPawn());
-	AddPawnTickDependency(GetPawn());
-}
+	Super::BeginPlay();
 
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
+	{
+		Subsystem->AddMappingContext(DefaultMappingContext, 0);
+	}
+}
