@@ -3,6 +3,42 @@ V.1:
 - Make UI
 - Make Levels
 - Setup Savegames
+- Add gameplay elements
 
-WB_MainMenu:
+UI:
 - Add Validation for Level on Join event
+- Settings:
+  - Graphics:
+    - Resolution
+    - FSR
+    - DLSS
+    - Basic Settings (res, quality)
+  - Audio:
+    - Volumes
+  - Gameplay:
+    - Autosave Interval
+  - Setup key mapping
+- HUD:
+  - Health
+  - Crosshair
+  - Interact on interactable
+- Loading Screen:
+  - List of tips
+  - Progress bar if needed
+
+SaveGames:
+- Save Logout positions of all players and add to save game data
+- All actors in level
+- Autosaves (custom time)
+
+Gameplay:
+- Add health
+- Turn Weapon component into ProjectileWeapon actor (use arrow component instead of projectile offset)
+- Create blade weapon actor
+- Setup damage system (projectile and blade)
+- Crouch/Slide
+- Fall damage
+- Create enum for item type (link to anims) in pickup component
+
+C++ and Blueprints:
+- Clean up and comment code
