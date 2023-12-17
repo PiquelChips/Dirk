@@ -6,7 +6,6 @@
 #include "UnrealEd.h"
 
 #include "TeleportComponentVisualizer.h"
-#include "WeaponComponentVisualizer.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(DirkEditor, All, All)
 

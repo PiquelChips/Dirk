@@ -8,7 +8,7 @@ public class Dirk : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Niagara" });
 
 		// Uncomment if you are using Slate
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

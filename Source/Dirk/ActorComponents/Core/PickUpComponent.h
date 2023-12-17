@@ -20,7 +20,7 @@ class DIRK_API UPickUpComponent : public UInteractComponent
 	GENERATED_BODY()
 
 	// Constructor
-	UPickUpComponent();
+//	UPickUpComponent();
 
 public:
 

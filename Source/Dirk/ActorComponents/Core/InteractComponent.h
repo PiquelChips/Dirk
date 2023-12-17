@@ -49,8 +49,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
 	USoundBase* InteractSound;
 	
-private:
-
 	// Input
 	
 	// Interaction Type 
@@ -58,6 +56,8 @@ private:
 	bool bRequireInput = false;
 	// Input Binding Handle
 	uint32 BindingHandle;
+	
+private:
 
 	// Code executed when something overlaps
 	UFUNCTION()

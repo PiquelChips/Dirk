@@ -1,37 +1,30 @@
 #include "DirkEditor.h"
-#include "Modules/ModuleManager.h"
-#include "Modules/ModuleInterface.h"
 
 IMPLEMENT_GAME_MODULE(FDirkEditorModule, DirkEditor);
 
+// Calledwhen module starts up, registers component visualizers
 void FDirkEditorModule::StartupModule()
 {
     // Check if editor is valid
     if (GUnrealEd)
     {
-        // Registerin the Teleport visualizer
+        // Register the Teleport visualizer
         TSharedPtr<FTeleportComponentVisualizer> TeleportVisualizer = MakeShareable(new FTeleportComponentVisualizer);
         if (TeleportVisualizer.IsValid())
         {
             GUnrealEd->RegisterComponentVisualizer(UTeleportComponent::StaticClass()->GetFName(), TeleportVisualizer);
             TeleportVisualizer->OnRegister();
         }
-        // Registerin the Weapon visualizer
-        TSharedPtr<FWeaponComponentVisualizer> WeaponVisualizer = MakeShareable(new FWeaponComponentVisualizer);
-        if (WeaponVisualizer.IsValid())
-        {
-            GUnrealEd->RegisterComponentVisualizer(UWeaponComponent::StaticClass()->GetFName(), WeaponVisualizer);
-            WeaponVisualizer->OnRegister();
-        }
     }
 }
 
+// Called when module shuts down, unregisters component visualizers
 void FDirkEditorModule::ShutdownModule()
 {
     // Check if editor is valid
     if (GUnrealEd)
     {
+        // Unregister Tleport Component visualizer
         GUnrealEd->UnregisterComponentVisualizer(UTeleportComponent::StaticClass()->GetFName());
-        GUnrealEd->UnregisterComponentVisualizer(UWeaponComponent::StaticClass()->GetFName());
     }
 }

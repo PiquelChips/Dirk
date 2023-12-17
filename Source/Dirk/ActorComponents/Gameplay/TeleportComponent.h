@@ -14,14 +14,16 @@ class DIRK_API UTeleportComponent : public UInteractComponent
 {
 	GENERATED_BODY()
 	
-protected:
-
-	// Begin play
-	virtual void BeginPlay();
+public:
 
 	// Location to teleport to
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	FVector TeleportDestination;
+
+protected:
+
+	// Begin play
+	virtual void BeginPlay();
 
 private:
 

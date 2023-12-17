@@ -3,7 +3,7 @@
 #include "PickUpComponent.h"
 
 // Constructor
-UPickUpComponent::UPickUpComponent() { PrimaryComponentTick.bCanEverTick = true; }
+//UPickUpComponent::UPickUpComponent() { PrimaryComponentTick.bCanEverTick = true; }
 
 // Fired when spawned into world
 void UPickUpComponent::BeginPlay()
@@ -17,7 +17,7 @@ void UPickUpComponent::BeginPlay()
         SetInteractable(false);
         // Start timer to interactable
         GetWorld()->GetTimerManager().SetTimer(PickupTimerHandle, this, &UPickUpComponent::TimerEnd, TimeBeforePickupable, false);
-    }   
+    }
     else
     {
         // Registers OnPickUp event

@@ -6,7 +6,6 @@
 
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "../Gameplay/DirkProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -16,13 +15,6 @@
 #include "UObject/UObjectGlobals.h"
 
 #include "DirkCharacter.generated.h"
-
-/*class UInputComponent;
-class USkeletalMeshComponent;
-class USceneComponent;
-class UCameraComponent;
-class UAnimMontage;
-class USoundBase;*/
 
 UCLASS(config=Game)
 class ADirkCharacter : public ACharacter
@@ -58,16 +50,16 @@ protected:
 	// Components
 
 	// Mesh other Player sees
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category=Mesh, meta=(AllowPrivateAccess = "true"))
 	USkeletalMeshComponent* MeshComponent;
 	// Mesh seen by other players
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category=Mesh, meta=(AllowPrivateAccess = "true"))
 	USkeletalMeshComponent* ExtMeshComponent;
 	// Camera
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Camera, meta=(AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, Category=Camera, meta=(AllowPrivateAccess = "true"))
 	UCameraComponent* CameraComponent;
 	// Relative Camera Position
-	UPROPERTY(EditAnywhere, Category=Camera)
+	UPROPERTY(EditAnywhere, Category=Camera, meta=(AllowPrivateAccess = "true"))
 	FVector RelativeCameraLocation = FVector(-10.0f, 0.0f, 60.0f);
 
 	// Input
