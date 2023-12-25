@@ -10,8 +10,9 @@ UI:
 - Settings:
   - Graphics:
     - Resolution
-    - FSR
-    - DLSS
+    Upscalers:
+      - Implement: DLSS, FSR
+      - Add plugins for: NIS, XeSS
     - Basic Settings (res, quality)
   - Audio:
     - Volumes
