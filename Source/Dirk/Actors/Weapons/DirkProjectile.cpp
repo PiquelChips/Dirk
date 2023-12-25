@@ -24,3 +24,37 @@ void ADirkProjectile::SetProjectileSpeed(float NewSpeed)
 	MoveComponent->MaxSpeed = NewSpeed;
 	MoveComponent->InitialSpeed = NewSpeed;
 }
+
+// Called when the projectile hits something
+void OnHit(
+    UPrimitiveComponent* HitComp, 
+    AActor* OtherActor, 
+    UPrimitiveComponent* OtherComp, 
+    FVector NormalImpulse, 
+    const FHitResult& Hit
+)
+{
+    
+}
+
+// Hit multicast
+
+// Validation
+bool ADirkProjectile::Multi_Hit_Validate() { return true; }
+// Implementation
+void ADirkProjectile::Multi_Hit_Implementation()
+{
+    // Try and play sound if specified
+    if (HitSound != nullptr)
+    {
+        // Play sound at arrow component
+        UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation(), GetActorRotation());
+    }
+    
+    // Try and play particles if specified
+    if (HitParticle != nullptr)
+    {
+        // Play particle effect at arrow component
+        UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, HitParticle, GetActorLocation(), GetActorRotation());
+    }
+}
