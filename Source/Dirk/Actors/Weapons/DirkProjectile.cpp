@@ -13,7 +13,7 @@ ADirkProjectile::ADirkProjectile()
 
     // Sphere (for collision)
     SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-
+    
     // Movement
     MoveComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MoveComponent"));
 }
@@ -26,15 +26,22 @@ void ADirkProjectile::SetProjectileSpeed(float NewSpeed)
 }
 
 // Called when the projectile hits something
-void OnHit(
-    UPrimitiveComponent* HitComp, 
-    AActor* OtherActor, 
-    UPrimitiveComponent* OtherComp, 
-    FVector NormalImpulse, 
+void ADirkProjectile::OnHit(
+    UPrimitiveComponent* HitComp,
+    AActor* OtherActor,
+    UPrimitiveComponent* OtherComp,
+    FVector NormalImpulse,
     const FHitResult& Hit
 )
 {
-    
+    if (ADirkCharacter* OtherCharacter = Cast<ADirkCharacter>(OtherActor))
+    {
+        // TODO: Implement Damaging Function
+    }
+
+    // Checks if the actor should be destroyed when hitssomething
+    if (bShouldDestroyOnHit)
+        Destroy();
 }
 
 // Hit multicast

@@ -12,10 +12,16 @@ ADirkProjectileWeapon::ADirkProjectileWeapon()
 
     // Mesh component
     MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
+
+    // Set mesh component as root component
+    RootComponent = MeshComponent;
+
     // Arrow Component
     ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponent"));
+    ArrowComponent->SetupAttachment(RootComponent);
     // Pickup Component
     PickupComponent = CreateDefaultSubobject<UPickUpComponent>(TEXT("PickupComponent"));
+    PickupComponent->SetupAttachment(RootComponent);
 }
 
 // Fired when actors enters tha game

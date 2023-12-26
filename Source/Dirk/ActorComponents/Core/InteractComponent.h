@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 
-#include "Components/SphereComponent.h"
+#include "Components/BoxComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
-#include "../../Core/DirkCharacter.h"
+#include "../../Actors/DirkCharacter.h"
 #include "UObject/ObjectMacros.h"
 
 #include "InteractComponent.generated.h"
@@ -18,7 +18,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteract, AActor*, InteractingCharacter);
 
 UCLASS( ClassGroup=(ActorComponent), meta=(BlueprintSpawnableComponent) )
-class DIRK_API UInteractComponent : public USphereComponent
+class DIRK_API UInteractComponent : public UBoxComponent
 {
 	GENERATED_BODY()
 
@@ -46,7 +46,7 @@ protected:
 	UInputAction* InteractAction;
 	
 	// Sound to play when interacted
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Effects")
 	USoundBase* InteractSound;
 	
 	// Input
@@ -61,7 +61,7 @@ private:
 
 	// Code executed when something overlaps
 	UFUNCTION()
-	void OnSphereBeginOverlap(
+	void OnBoxBeginOverlap(
 		UPrimitiveComponent* OverlappedComponent, 
 		AActor* OtherActor, 
 		UPrimitiveComponent* OtherComp, 
@@ -71,7 +71,7 @@ private:
 	);
 	// Code executed when something stops overlaping
 	UFUNCTION()
-	void OnSphereEndOverlap(
+	void OnBoxEndOverlap(
 		class UPrimitiveComponent* OverlappedComp, 
 		class AActor* OtherActor, 
 		class UPrimitiveComponent* OtherComp, 

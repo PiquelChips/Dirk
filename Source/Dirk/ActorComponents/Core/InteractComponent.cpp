@@ -8,12 +8,12 @@ void UInteractComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// Register overlap events
-	OnComponentBeginOverlap.AddDynamic(this, &UInteractComponent::OnSphereBeginOverlap);
-	OnComponentEndOverlap.AddDynamic(this, &UInteractComponent::OnSphereEndOverlap);
+	OnComponentBeginOverlap.AddDynamic(this, &UInteractComponent::OnBoxBeginOverlap);
+	OnComponentEndOverlap.AddDynamic(this, &UInteractComponent::OnBoxEndOverlap);
 }
 
 // Interactd when actor overlaps with the component
-void UInteractComponent::OnSphereBeginOverlap(
+void UInteractComponent::OnBoxBeginOverlap(
 	UPrimitiveComponent* OverlappedComponent, 
 	AActor* InteractingActor, 
 	UPrimitiveComponent* OtherComp, 
@@ -22,7 +22,7 @@ void UInteractComponent::OnSphereBeginOverlap(
 	const FHitResult& SweepResult
 )
 {
-	// Checks if component can interact and if the interacting actor is valid
+	// Checks if component can interact and  the interacting actor is valid
 	if (InteractingActor->IsA(TriggerClass) && bIsInteractable)
 	{
 		// Sets interacting actor class variable
@@ -42,8 +42,8 @@ void UInteractComponent::OnSphereBeginOverlap(
 	}
 }
 
-// Called when actor leaves the sphere are
-void UInteractComponent::OnSphereEndOverlap(
+// Called when actor leaves the Box are
+void UInteractComponent::OnBoxEndOverlap(
 	UPrimitiveComponent* OverlappedComponent,
 	AActor* InteractingActor,
 	UPrimitiveComponent* OtherComp,

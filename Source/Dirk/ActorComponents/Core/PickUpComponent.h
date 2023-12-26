@@ -45,10 +45,10 @@ protected:
 	// Interactability
 
 	// Should delay interactability
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
 	bool bShouldDelayCanInteract = true;
 	// Time before can pickup
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
 	float TimeBeforePickupable = 2.f;
 	// Handle for Pickup-timer
 	FTimerHandle PickupTimerHandle;
@@ -100,7 +100,7 @@ private:
 	void Server_Drop_Implementation();
 	
 	// Sound to play when picked up
-	UPROPERTY(EditAnywhere, Category="Audio")
+	UPROPERTY(EditAnywhere, Category="Effects")
 	USoundBase* PickUpSound;
 
 };

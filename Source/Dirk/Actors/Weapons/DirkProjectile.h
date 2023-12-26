@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "../DirkActor.h"
+#include "../DirkCharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "NiagaraFunctionLibrary.h"
@@ -41,6 +42,10 @@ protected:
 
 private:
 
+	// Should the actor be destroyed when it hits something
+	UPROPERTY(EditAnywhere, Category="Collision")
+	bool bShouldDestroyOnHit = true;
+
 	// Effects
 
 	// Particles spawned at hit location
@@ -59,6 +64,5 @@ private:
 	void Multi_Hit();
 	bool Multi_Hit_Validate();
 	void Multi_Hit_Implementation();
-
 
 };

@@ -51,6 +51,7 @@ void UPickUpComponent::OnPickUp(AActor* InteractingActor)
             AttachToComponent(Character->GetMeshComponent(), AttachmentRules, FName(TEXT("GripPoint")));
             // Sets this components owner to be the character that picked it up
             GetOwner()->SetOwner(Character);
+            GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, GetOwner()->GetOwner()->GetName());
 
             // Tell Character that it has an item
             Character->SetHasItem(true);
