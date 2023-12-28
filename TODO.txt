@@ -44,6 +44,7 @@ Gameplay:
 - DirkItem:
   - Generic class for pickupable items
   - Create enum for item type (link to anims)
+  - Remove pickup component and intergrate with DirkItem, setup SetItem method in Dirk character that handls snapping and ownership tranfser
 - Move Interact Cooldown from pickup to Interact component
 - Add water and swimming
 - Vehicles/mounts:

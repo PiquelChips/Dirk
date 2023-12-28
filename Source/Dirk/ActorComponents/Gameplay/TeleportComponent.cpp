@@ -15,7 +15,7 @@ void UTeleportComponent::BeginPlay()
 // Teleport function
 
 // Server validation
-bool UTeleportComponent::Server_Teleport_Validate(AActor* Character) { return true; }
+bool UTeleportComponent::Server_Teleport_Validate(ADirkActor* Character) { return true; }
 
 // Server Teleport function implementation, teleports actor
-void UTeleportComponent::Server_Teleport_Implementation(AActor* Character) { if (Character != nullptr) { Character->SetActorTransform(FTransform(TeleportDestination)); } }
+void UTeleportComponent::Server_Teleport_Implementation(ADirkActor* Character) { if (Character != nullptr) { Character->SetActorTransform(FTransform(TeleportDestination)); } }

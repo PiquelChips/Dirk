@@ -9,13 +9,14 @@
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
 #include "../../Actors/DirkCharacter.h"
+#include "../../Actors/DirkActor.h"
 #include "UObject/ObjectMacros.h"
 
 #include "InteractComponent.generated.h"
 
 // Declaration of the delegate that will be called when someone picks this up
 // The character picking this up is the parameter sent with the notification
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteract, AActor*, InteractingCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInteract, ADirkActor*, InteractingCharacter);
 
 UCLASS( ClassGroup=(ActorComponent), meta=(BlueprintSpawnableComponent) )
 class DIRK_API UInteractComponent : public UBoxComponent
@@ -27,6 +28,9 @@ public:
 	// Fires on interaction
 	UPROPERTY(BlueprintAssignable)
 	FOnInteract OnInteract;
+	
+	// Input Binding Handle
+	uint32 BindingHandle;
 
 protected:
 
@@ -54,8 +58,19 @@ protected:
 	// Interaction Type 
 	UPROPERTY(EditAnywhere, Category="Interaction")
 	bool bRequireInput = false;
-	// Input Binding Handle
-	uint32 BindingHandle;
+	
+	// Interactability cooldown
+
+	// Should delay interactability
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
+	bool bShouldDelayCanInteract = true;
+	// Time before can pickup
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
+	float TimeBeforePickupable = 2.f;
+	// Handle for Pickup-timer
+	FTimerHandle PickupTimerHandle;
+	// Called by timer
+	void TimerEnd();
 	
 private:
 
@@ -86,7 +101,7 @@ private:
 	void Interact();
 
 	// Interacting actor
-	AActor* OtherActor;
+	ADirkActor* OtherActor;
 
 	// Trigger Class
 	UPROPERTY(EditAnywhere, Category="Interaction")

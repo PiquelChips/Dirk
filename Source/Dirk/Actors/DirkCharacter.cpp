@@ -15,15 +15,14 @@ ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
 	// Create a CameraComponent	
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(GetCapsuleComponent());
-	CameraComponent->SetRelativeLocation(RelativeCameraLocation); // Position the camera
+	// Position the camera
+	CameraComponent->SetRelativeLocation(RelativeCameraLocation);
 	CameraComponent->bUsePawnControlRotation = true;
 	
 
 	// Mesh Component
 	MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh"));
 	MeshComponent->SetupAttachment(CameraComponent);
-	MeshComponent->bCastDynamicShadow = false;
-	MeshComponent->CastShadow = false;
 	MeshComponent->SetRelativeRotation(FRotator(2.5f, 5.f, 5.f));
 	MeshComponent->SetRelativeLocation(FVector(-30.f, -15.f, -150.f));
 

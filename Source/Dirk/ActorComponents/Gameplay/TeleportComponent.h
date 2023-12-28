@@ -29,7 +29,7 @@ private:
 
 	// Teleport
 	UFUNCTION(Server, Reliable, WithValidation)
-	void Server_Teleport(AActor* Character);
-	bool Server_Teleport_Validate(AActor* Character);
-	void Server_Teleport_Implementation(AActor* Character);
+	void Server_Teleport(ADirkActor* Character);
+	bool Server_Teleport_Validate(ADirkActor* Character);
+	void Server_Teleport_Implementation(ADirkActor* Character);
 };

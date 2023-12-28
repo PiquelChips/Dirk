@@ -7,6 +7,27 @@ void UInteractComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+    // Checks if interactability should be delayed, prevents automatic interaction after creation (repeated drop/pickup cycle)
+    if (bShouldDelayCanInteract)
+    { 
+        // Set not interactable
+        SetInteractable(false);
+        // Start timer to interactable
+        GetWorld()->GetTimerManager().SetTimer(PickupTimerHandle, this, &UInteractComponent::TimerEnd, TimeBeforePickupable, false);
+    }
+    else
+    {
+		// Register overlap events
+		OnComponentBeginOverlap.AddDynamic(this, &UInteractComponent::OnBoxBeginOverlap);
+		OnComponentEndOverlap.AddDynamic(this, &UInteractComponent::OnBoxEndOverlap);
+    }
+}
+
+// Called when interactability timer ends
+void UInteractComponent::TimerEnd() 
+{
+    // Tells obj it can be interacted with
+    SetInteractable(true);
 	// Register overlap events
 	OnComponentBeginOverlap.AddDynamic(this, &UInteractComponent::OnBoxBeginOverlap);
 	OnComponentEndOverlap.AddDynamic(this, &UInteractComponent::OnBoxEndOverlap);
@@ -26,19 +47,23 @@ void UInteractComponent::OnBoxBeginOverlap(
 	if (InteractingActor->IsA(TriggerClass) && bIsInteractable)
 	{
 		// Sets interacting actor class variable
-		OtherActor = InteractingActor;
-		// Checks if component needs input
-		if (bRequireInput)
+		if (Cast<ADirkActor>(InteractingActor))
 		{
-			// Bind Action
-			if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InteractingActor->InputComponent))
+			// Assign Class OtherActor Variable
+			OtherActor = Cast<ADirkActor>(InteractingActor);
+			// Checks if component needs input
+			if (bRequireInput)
 			{
-				// Saves binding handle to be able to unbind the action later on
-				BindingHandle = EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this, &UInteractComponent::Interact).GetHandle();
+				// Bind Action
+				if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(OtherActor->InputComponent))
+				{
+					// Saves binding handle to be able to unbind the action later on
+					BindingHandle = EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this, &UInteractComponent::Interact).GetHandle();
+				}
 			}
+			// Imediatly interacts if input is not needed
+			else { Interact(); }
 		}
-		// Imediatly interacts if input is not needed
-		else { Interact(); }
 	}
 }
 

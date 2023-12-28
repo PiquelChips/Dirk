@@ -10,18 +10,8 @@ ADirkProjectileWeapon::ADirkProjectileWeapon()
 
     // Create actor components
 
-    // Mesh component
-    MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
-
-    // Set mesh component as root component
-    RootComponent = MeshComponent;
-
     // Arrow Component
     ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponent"));
-    ArrowComponent->SetupAttachment(RootComponent);
-    // Pickup Component
-    PickupComponent = CreateDefaultSubobject<UPickUpComponent>(TEXT("PickupComponent"));
-    PickupComponent->SetupAttachment(RootComponent);
 }
 
 // Fired when actors enters tha game
@@ -29,33 +19,32 @@ void ADirkProjectileWeapon::BeginPlay()
 {
     Super::BeginPlay();
 
-    // Register events
-    PickupComponent->OnUse.AddDynamic(this, &ADirkProjectileWeapon::Fire);
-
     // Set tick and cooldown
     SetActorTickEnabled(false);
 }
 
 // Called when weapon is used
-void ADirkProjectileWeapon::Fire(ADirkCharacter* DirkCharacter)
+void ADirkProjectileWeapon::Use()
 {
-    if (!GetOwner()->HasAuthority()) { Server_Fire(DirkCharacter); }
-    else { Fire_Implementation(DirkCharacter); }
+    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("USE ACTION TRIGGERED"));
+    if (!GetOwner()->HasAuthority()) { Server_Fire(); }
+    else { Fire_Implementation(); }
 }
 
 // Server fire RPC
 
 // Server validation
-bool ADirkProjectileWeapon::Server_Fire_Validate(ADirkCharacter* DirkCharacter) { return true; }
+bool ADirkProjectileWeapon::Server_Fire_Validate() { return true; }
 // Fires the classes implementation method
-void ADirkProjectileWeapon::Server_Fire_Implementation(ADirkCharacter* DirkCharacter) { Fire_Implementation(DirkCharacter); }
+void ADirkProjectileWeapon::Server_Fire_Implementation() { Fire_Implementation(); }
 
 // Actually Fires weapon
-void ADirkProjectileWeapon::Fire_Implementation(ADirkCharacter* DirkCharacter)
+void ADirkProjectileWeapon::Fire_Implementation()
 {
+    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("FIRE"));
     // Try and fire projectile
     UWorld* const World = GetWorld();
-    if ((DirkCharacter->GetController() != nullptr) && (ProjectileClass != nullptr) && (World != nullptr) && (!bCooldown))
+    if ((Character->GetController() != nullptr) && (ProjectileClass != nullptr) && (World != nullptr) && (!bCooldown))
     {
         // Set spawn collision handling override
         FActorSpawnParameters ActorSpawnParams;
