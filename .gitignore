@@ -1,6 +1,9 @@
-# Visual Studio Code user specific files
+# Visual Studio user specific files
 .vscode/
 .ignore
+.vsconfig
+*.code-workspace
+.vs/
 
 # Compiled Object files
 *.slo
