@@ -20,10 +20,10 @@ public:
 
 	// Constructor
 	ADirkProjectileWeapon();
-	
+
 	// Fired on Input
 	void Use() override;
-
+	
 protected:
 
 	// Begin play function

@@ -9,36 +9,39 @@
 
 #include "DirkItem.generated.h"
 
-/*UENUM(BlueprintType)
+UENUM(BlueprintType)
 enum EDirkItemType
 {
 	PROJECTILE_WEAPON UMETA(Displayname = "Projectile Weapon"),
 	BLADE_WEAPON UMETA(Displayname = "Blade Weapon")
-};*/
+};
 
 UCLASS()
 class DIRK_API ADirkItem : public ADirkActor
 {
 	GENERATED_BODY()
 
-public:
-
 	// Constructor
 	ADirkItem();
 	
+public:
+
 	// Fired when Use key is pressed
-	virtual void Use() = 0;
+	virtual void Use();
 
 protected:
 
 	// Called when actor leaves the game (destroyed)
 	void EndPlay(EEndPlayReason::Type EndPlayReason) override;
-
+	
 	// Pick up function
-	void OnPickUp(ADirkActor* OtherActor);
-
+	void PickUp(AActor* OtherActor);
+	
 	// Components
 
+	// Scene component (root) change to Custom dirk component if needed
+	UPROPERTY(VisibleDefaultsOnly)
+	USceneComponent* SceneComponent;
 	// InteractComponent
 	UPROPERTY(VisibleDefaultsOnly, Category="Interaction")
 	UInteractComponent* InteractComponent;

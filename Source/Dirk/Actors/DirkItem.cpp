@@ -4,23 +4,28 @@
 
 // Constructor
 ADirkItem::ADirkItem() 
-{ 
+{
     // Setup components
 
+    // Scene component (root)
+    SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    RootComponent = SceneComponent;
     // Interact component
     InteractComponent = CreateDefaultSubobject<UInteractComponent>(TEXT("InteractComponent"));
-
+    InteractComponent->SetupAttachment(RootComponent);
     // Mesh component
     MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
+    MeshComponent->SetupAttachment(RootComponent);
 
     // Register OnInteract Event
-    InteractComponent->OnInteract.AddDynamic(this, &ADirkItem::OnPickUp);
-    PrimaryActorTick.bCanEverTick = false; 
+    InteractComponent->OnInteract.AddDynamic(this, &ADirkItem::PickUp);
+    PrimaryActorTick.bCanEverTick = false;
 }
 
 // Called when item is interacted with (picked up)
-void ADirkItem::OnPickUp(ADirkActor* OtherActor)
+void ADirkItem::PickUp(AActor* OtherActor)
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BroadCast received !"));
     // Checks of other actor is a DirkCharacter
     if (Cast<ADirkCharacter>(OtherActor))
     {
@@ -69,11 +74,11 @@ void ADirkItem::OnPickUp(ADirkActor* OtherActor)
     }
 }
 
-/*// Called when item is used
+// Called when item is used
 void ADirkItem::Use()
 {
     // TODO: write some default implementation or figure out if can make it abstract
-}*/
+}
 
 // Drops the item
 void ADirkItem::Drop()

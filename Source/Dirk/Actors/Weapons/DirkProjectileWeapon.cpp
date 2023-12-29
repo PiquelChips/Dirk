@@ -12,6 +12,7 @@ ADirkProjectileWeapon::ADirkProjectileWeapon()
 
     // Arrow Component
     ArrowComponent = CreateDefaultSubobject<UArrowComponent>(TEXT("ArrowComponent"));
+    ArrowComponent->SetupAttachment(MeshComponent);
 }
 
 // Fired when actors enters tha game

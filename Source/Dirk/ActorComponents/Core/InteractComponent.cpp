@@ -43,27 +43,25 @@ void UInteractComponent::OnBoxBeginOverlap(
 	const FHitResult& SweepResult
 )
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap"));
 	// Checks if component can interact and  the interacting actor is valid
 	if (InteractingActor->IsA(TriggerClass) && bIsInteractable)
 	{
-		// Sets interacting actor class variable
-		if (Cast<ADirkActor>(InteractingActor))
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Can Interact"));
+		// Assign Class OtherActor Variable
+		OtherActor = InteractingActor;
+		// Checks if component needs input
+		if (bRequireInput)
 		{
-			// Assign Class OtherActor Variable
-			OtherActor = Cast<ADirkActor>(InteractingActor);
-			// Checks if component needs input
-			if (bRequireInput)
+			// Bind Action
+			if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(OtherActor->InputComponent))
 			{
-				// Bind Action
-				if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(OtherActor->InputComponent))
-				{
-					// Saves binding handle to be able to unbind the action later on
-					BindingHandle = EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this, &UInteractComponent::Interact).GetHandle();
-				}
+				// Saves binding handle to be able to unbind the action later on
+				BindingHandle = EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Completed, this, &UInteractComponent::Interact).GetHandle();
 			}
-			// Imediatly interacts if input is not needed
-			else { Interact(); }
 		}
+		// Imediatly interacts if input is not needed
+		else { Interact(); }
 	}
 }
 
@@ -86,23 +84,21 @@ void UInteractComponent::OnBoxEndOverlap(
 // Called by the OnInteract event
 void UInteractComponent::Interact()
 {
-	// Checks if component interaction is activated
-	if (bIsInteractable)
-		//Notify that the actor is being intercated with
-		OnInteract.Broadcast(OtherActor);
-		// Checks if interacting actor is a DirkCharacter
-		if (ADirkCharacter* DirkCharacter = Cast<ADirkCharacter>(OtherActor))
-			// Checks if character has player controller
-			if (DirkCharacter->GetController() != nullptr)
-			{
-				// Try and play sound if one is specified
-				if (InteractSound != nullptr)
-					UGameplayStatics::PlaySoundAtLocation(this, InteractSound, DirkCharacter->GetActorLocation());
-			}
-			// Checks if interaction is repeatable
-			if (!bDoesInteractRepeat)
-				bIsInteractable = !bIsInteractable;
-	
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Interacted !"));
+	//Notify that the actor is being intercated with
+	OnInteract.Broadcast(OtherActor);
+	// Checks if interacting actor is a DirkCharacter
+	if (ADirkCharacter* DirkCharacter = Cast<ADirkCharacter>(OtherActor))
+		// Checks if character has player controller
+		if (DirkCharacter->GetController() != nullptr)
+		{
+			// Try and play sound if one is specified
+			if (InteractSound != nullptr)
+				UGameplayStatics::PlaySoundAtLocation(this, InteractSound, DirkCharacter->GetActorLocation());
+		}
+		// Checks if interaction is repeatable
+		if (!bDoesInteractRepeat)
+			bIsInteractable = !bIsInteractable;	
 }
 
 // Sets the IsInteractable variable to true
