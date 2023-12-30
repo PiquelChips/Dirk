@@ -1,0 +1,10 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.FFXFSR3Settings.cpp.obj": [
+			"FFXFSR3Settings.gen.cpp.obj",
+			"FFXFSR3Settings.init.gen.cpp.obj",
+			"FFXFSR3Settings.cpp.obj"
+		]
+	}
+}

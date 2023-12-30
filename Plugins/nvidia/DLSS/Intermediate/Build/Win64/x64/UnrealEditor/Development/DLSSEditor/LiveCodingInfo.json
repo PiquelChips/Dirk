@@ -1,0 +1,8 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.DLSSEditor.cpp.obj": [
+			"DLSSEditor.cpp.obj"
+		]
+	}
+}

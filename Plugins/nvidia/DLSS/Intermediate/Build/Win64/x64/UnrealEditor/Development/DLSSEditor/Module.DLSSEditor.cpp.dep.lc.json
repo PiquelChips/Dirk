@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\dlsseditor\\module.dlsseditor.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\dlsseditor\\definitions.dlsseditor.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\dlsseditor\\private\\dlsseditor.cpp",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\dlsseditor\\public\\dlsseditor.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\dlss\\public\\dlssupscaler.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\rendercore\\public\\customresourcepool.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\dlss\\public\\dlss.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\dlss\\public\\dlsssettings.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\intermediate\\build\\win64\\unrealeditor\\inc\\dlss\\uht\\dlsssettings.generated.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\ngxrhi\\public\\ngxrhi.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_params.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_defs.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_helpers_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_helpers.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_defs_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_params_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\developer\\settings\\public\\isettingsmodule.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\developer\\settings\\public\\isettingssection.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

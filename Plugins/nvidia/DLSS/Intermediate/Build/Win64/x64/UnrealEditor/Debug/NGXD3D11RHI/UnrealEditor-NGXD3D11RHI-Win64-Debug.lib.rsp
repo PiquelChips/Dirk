@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-NGXD3D11RHI-Win64-Debug.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Debug\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"..\Plugins\Marketplace\nvidia\DLSS\Intermediate\Build\Win64\x64\UnrealEditor\Debug\NGXD3D11RHI\Module.NGXD3D11RHI.cpp.obj"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Debug\Default.rc2.res"
+/OUT:"..\Plugins\Marketplace\nvidia\DLSS\Intermediate\Build\Win64\x64\UnrealEditor\Debug\NGXD3D11RHI\UnrealEditor-NGXD3D11RHI-Win64-Debug.lib"

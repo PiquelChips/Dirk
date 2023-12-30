@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-StreamlineShaders.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"C:\Users\ronan\Documents\Dev\Proj\Dirk\Plugins\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineShaders\Module.StreamlineShaders.cpp.obj"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
+/OUT:"C:\Users\ronan\Documents\Dev\Proj\Dirk\Plugins\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineShaders\UnrealEditor-StreamlineShaders.lib"

@@ -1,0 +1,29 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ngxrhi\\module.ngxrhi.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ngxrhi\\definitions.ngxrhi.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\ngxrhi\\private\\ngxrhi.cpp",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\ngxrhi\\public\\ngxrhi.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_params.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_defs.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_helpers_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_helpers.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_defs_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\proj\\dirk\\plugins\\nvidia\\dlss\\source\\thirdparty\\ngx\\include\\nvsdk_ngx_params_dlssd.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\interfaces\\ipluginmanager.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\plugindescriptor.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\custombuildsteps.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\localizationdescriptor.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\moduledescriptor.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\pluginreferencedescriptor.h",
+            "c:\\users\\ronan\\documents\\dev\\engine\\ue5_3\\engine\\source\\runtime\\projects\\public\\versescope.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

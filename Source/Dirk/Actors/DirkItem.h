@@ -21,10 +21,10 @@ class DIRK_API ADirkItem : public ADirkActor
 {
 	GENERATED_BODY()
 
+public:
+
 	// Constructor
 	ADirkItem();
-	
-public:
 
 	// Fired when Use key is pressed
 	virtual void Use();
@@ -35,6 +35,7 @@ protected:
 	void EndPlay(EEndPlayReason::Type EndPlayReason) override;
 	
 	// Pick up function
+	UFUNCTION()
 	void PickUp(AActor* OtherActor);
 	
 	// Components
