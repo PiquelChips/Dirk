@@ -1,5 +1,7 @@
 # Dirk
 
+This project started as a hobby and still is, any help is appreciated.
+
 # TODO
 
 V.1:
