@@ -8,9 +8,6 @@
 ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer.DoNotCreateDefaultSubobject(ACharacter::MeshComponentName))
 {
-	// Character doesnt have a Item at start
-	bHasItem = false;
-	
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 		

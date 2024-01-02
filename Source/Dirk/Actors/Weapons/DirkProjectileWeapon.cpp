@@ -27,7 +27,6 @@ void ADirkProjectileWeapon::BeginPlay()
 // Called when weapon is used
 void ADirkProjectileWeapon::Use()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("USE ACTION TRIGGERED"));
     if (!GetOwner()->HasAuthority()) { Server_Fire(); }
     else { Fire_Implementation(); }
 }
@@ -42,7 +41,6 @@ void ADirkProjectileWeapon::Server_Fire_Implementation() { Fire_Implementation()
 // Actually Fires weapon
 void ADirkProjectileWeapon::Fire_Implementation()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("FIRE"));
     // Try and fire projectile
     UWorld* const World = GetWorld();
     if ((Character->GetController() != nullptr) && (ProjectileClass != nullptr) && (World != nullptr) && (!bCooldown))
@@ -53,6 +51,7 @@ void ADirkProjectileWeapon::Fire_Implementation()
         
         // Spawn the projectile at the arrow component location
         World->SpawnActor<ADirkActor>(ProjectileClass, ArrowComponent->GetComponentLocation(), ArrowComponent->GetComponentRotation(), ActorSpawnParams);
+        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("FIRE"));
         // Play effects
         Multi_Fire();
 

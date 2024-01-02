@@ -44,12 +44,6 @@ public:
 
 	// Public Item functions
 
-	// Setter for bHasItem --- TEMP ---
-	UFUNCTION(BlueprintCallable, Category="Item")
-	void SetHasItem(bool bNewHasItem) { bHasItem = bNewHasItem; }
-	// Getter for bHasItem
-	UFUNCTION(BlueprintCallable, Category="Item")
-	bool GetHasItem() { return bHasItem; }
 	// Set the characters holding item item (class variables)
 	UFUNCTION(BlueprintCallable, Category="Item")
 	bool SetItem(ADirkItem* Item);
@@ -99,10 +93,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* MenuAction;
 	
-	// Bool to check if the character has an item
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Item)
-	bool bHasItem;
-
 	// Item the character is holding
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Item")
 	ADirkItem* DirkItem;

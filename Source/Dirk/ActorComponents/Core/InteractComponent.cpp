@@ -45,11 +45,9 @@ void UInteractComponent::OnBoxBeginOverlap(
 	const FHitResult& SweepResult
 )
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Overlap"));
 	// Checks if component can interact and  the interacting actor is valid
 	if (InteractingActor->IsA(TriggerClass) && bIsInteractable)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Can Interact"));
 		// Assign Class OtherActor Variable
 		OtherActor = InteractingActor;
 		// Checks if component needs input
@@ -86,8 +84,6 @@ void UInteractComponent::OnBoxEndOverlap(
 // Called by the OnInteract event
 void UInteractComponent::Interact()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Interacted !"));
-	
 	// Check if owner is a DirkItem
 	if (ADirkItem* DirkItem = Cast<ADirkItem>(GetOwner()))
 	{

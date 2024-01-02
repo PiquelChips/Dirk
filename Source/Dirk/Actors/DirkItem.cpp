@@ -24,7 +24,6 @@ ADirkItem::ADirkItem()
 // Called when item is interacted with (picked up)
 void ADirkItem::PickUp(AActor* OtherActor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BroadCast received !"));
     // Checks of other actor is a DirkCharacter
     if (Cast<ADirkCharacter>(OtherActor))
     {
@@ -57,10 +56,8 @@ void ADirkItem::PickUp(AActor* OtherActor)
                 {
                     // Use action
                     UseBindingHandle = EnhancedInputComponent->BindAction(UseAction, ETriggerEvent::Triggered, this, &ADirkItem::Use).GetHandle();
-                    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("USE ACTION BINDED"));
                     // Drop action
                     DropBindingHandle = EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ADirkItem::Drop).GetHandle();
-                    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("DROP ACTION BINDED"));
                 }
             }
 
@@ -77,13 +74,14 @@ void ADirkItem::PickUp(AActor* OtherActor)
 void ADirkItem::Use()
 {
     // TODO: write some default implementation or figure out if can make it abstract
+    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("UNIMPLEMENTED Use METHID CALLED IN DirkItem.cpp"));
 }
 
 // Drops the item
 void ADirkItem::Drop()
 {
     // Tell Character it no longer has an item 
-    Character->SetHasItem(false);
+    Character->SetItem(nullptr);
 
     // Handle server actor destruction and respawning
     if (!HasAuthority()) { Server_Drop(); }
