@@ -8,12 +8,12 @@ void FDirkEditorModule::StartupModule()
     // Check if editor is valid
     if (GUnrealEd)
     {
-        // Register the Teleport visualizer
-        TSharedPtr<FTeleportComponentVisualizer> TeleportVisualizer = MakeShareable(new FTeleportComponentVisualizer);
-        if (TeleportVisualizer.IsValid())
+        // Register the Line visualizer
+        TSharedPtr<FLineComponentVisualizer> LineVisualizer = MakeShareable(new FLineComponentVisualizer);
+        if (LineVisualizer.IsValid())
         {
-            GUnrealEd->RegisterComponentVisualizer(UTeleportComponent::StaticClass()->GetFName(), TeleportVisualizer);
-            TeleportVisualizer->OnRegister();
+            GUnrealEd->RegisterComponentVisualizer(ULineComponent::StaticClass()->GetFName(), LineVisualizer);
+            LineVisualizer->OnRegister();
         }
     }
 }
@@ -25,6 +25,6 @@ void FDirkEditorModule::ShutdownModule()
     if (GUnrealEd)
     {
         // Unregister Tleport Component visualizer
-        GUnrealEd->UnregisterComponentVisualizer(UTeleportComponent::StaticClass()->GetFName());
+        GUnrealEd->UnregisterComponentVisualizer(ULineComponent::StaticClass()->GetFName());
     }
 }

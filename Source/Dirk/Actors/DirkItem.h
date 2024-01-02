@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "../ActorComponents/Core/InteractComponent.h"
+#include "../ActorComponents/InteractComponent.h"
 #include "DirkActor.h"
 
 #include "DirkItem.generated.h"

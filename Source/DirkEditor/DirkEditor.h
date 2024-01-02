@@ -5,7 +5,7 @@
 #include "Modules/ModuleManager.h"
 #include "UnrealEd.h"
 
-#include "TeleportComponentVisualizer.h"
+#include "LineComponentVisualizer.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(DirkEditor, All, All)
 

@@ -35,6 +35,9 @@ void ADirkProjectile::OnHit(
     // Checks if the actor should be destroyed when hitssomething
     if (bShouldDestroyOnHit)
         Destroy();
+
+    // Plays effects
+    Multi_Hit();
 }
 
 // Hit multicast

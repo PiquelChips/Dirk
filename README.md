@@ -41,8 +41,7 @@ SaveGames:
 Gameplay:
 - Do Ingame Controller elements not in playercontroller (to implement AI)
 - Add health
-- Turn Weapon component into ProjectileWeapon actor (use arrow component instead of projectile offset) // Fix firing effects
-- Turn Teleport component into actor and add effects (destination and origin)
+- Add effect and impulse on DirkProjectile hit ----> CHECK FOR MULTIPLAYER <----
 - Create blade weapon actor
 - Setup damage system (projectile and blade)
 - Crouch/Slide
