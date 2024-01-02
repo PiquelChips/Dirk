@@ -2,6 +2,8 @@
 
 #include "InteractComponent.h"
 
+#include "../../Actors/DirkItem.h"
+
 // Called when the game starts
 void UInteractComponent::BeginPlay()
 {
@@ -85,8 +87,18 @@ void UInteractComponent::OnBoxEndOverlap(
 void UInteractComponent::Interact()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Interacted !"));
-	//Notify that the actor is being intercated with
-	OnInteract.Broadcast(OtherActor);
+	
+	// Check if owner is a DirkItem
+	if (ADirkItem* DirkItem = Cast<ADirkItem>(GetOwner()))
+	{
+		// Call DirkItem pickup function
+		DirkItem->PickUp(OtherActor);
+	}
+	else
+	{
+		//Notify that the actor is being intercated with
+		OnInteract.Broadcast(OtherActor);
+	}
 	// Checks if interacting actor is a DirkCharacter
 	if (ADirkCharacter* DirkCharacter = Cast<ADirkCharacter>(OtherActor))
 		// Checks if character has player controller
@@ -96,10 +108,8 @@ void UInteractComponent::Interact()
 			if (InteractSound != nullptr)
 				UGameplayStatics::PlaySoundAtLocation(this, InteractSound, DirkCharacter->GetActorLocation());
 		}
-		// Checks if interaction is repeatable
-		if (!bDoesInteractRepeat)
-			bIsInteractable = !bIsInteractable;	
-}
 
-// Sets the IsInteractable variable to true
-void UInteractComponent::SetInteractable(bool bCanInteract) noexcept { bIsInteractable = bCanInteract; }
+	// Checks if interaction is repeatable
+	if (!bDoesInteractRepeat)
+		bIsInteractable = !bIsInteractable;	
+}

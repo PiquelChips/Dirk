@@ -43,7 +43,7 @@ protected:
 
 	// Set if actor can be interacted with
 	UFUNCTION(BlueprintCallable)
-	void SetInteractable(bool bCanInteract) noexcept;
+	void SetInteractable(bool bCanInteract) noexcept { bIsInteractable = bCanInteract; }
 
 	// Interaction Input action (not required if Require Input is false)
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"), Category="Interaction")

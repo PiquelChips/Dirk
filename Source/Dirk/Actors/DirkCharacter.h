@@ -16,6 +16,15 @@
 
 #include "DirkCharacter.generated.h"
 
+UENUM(BlueprintType)
+enum EDirkCharacterAnimStatus
+{
+	DEFAULT UMETA(Displayname="Default"),
+	PROJECTILE_WEAPON_ITEM UMETA(Displayname="ProjectileWeaponItem"),
+	BLADE_WEAPON_ITEM UMETA(Displayname="BladeWeaponItem"),
+	SITTING UMETA(Desplayname="Sitting")
+};
+
 UCLASS(config=Game)
 class ADirkCharacter : public ACharacter
 {
@@ -33,14 +42,24 @@ public:
 	// Getter for camera component
 	UCameraComponent* GetCameraComponent() const { return CameraComponent; }
 
-	// Has Item
+	// Public Item functions
 
-	// Setter for bHasItem
-	UFUNCTION(BlueprintCallable, Category = Item)
+	// Setter for bHasItem --- TEMP ---
+	UFUNCTION(BlueprintCallable, Category="Item")
 	void SetHasItem(bool bNewHasItem) { bHasItem = bNewHasItem; }
 	// Getter for bHasItem
-	UFUNCTION(BlueprintCallable, Category = Item)
+	UFUNCTION(BlueprintCallable, Category="Item")
 	bool GetHasItem() { return bHasItem; }
+	// Set the characters holding item item (class variables)
+	UFUNCTION(BlueprintCallable, Category="Item")
+	bool SetItem(ADirkItem* Item);
+	// Get the characters item
+	UFUNCTION(BlueprintCallable, Category="Item")
+	ADirkItem* GetItem() { return DirkItem; }
+	
+	// Get the animation status of the Character
+	UFUNCTION(BlueprintCallable, Category="Animation")
+	EDirkCharacterAnimStatus GetAnimStatus() { return AnimStatus; }
 
 protected:
 
@@ -84,6 +103,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Item)
 	bool bHasItem;
 
+	// Item the character is holding
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Item")
+	ADirkItem* DirkItem;
+
 private:
 
 	// Input
@@ -95,5 +118,8 @@ private:
 	// Sets up the input component
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
+	// Animation
+	UPROPERTY(EditAnywhere, Category=Animation)
+	TEnumAsByte<EDirkCharacterAnimStatus> AnimStatus = EDirkCharacterAnimStatus::DEFAULT;
 };
 

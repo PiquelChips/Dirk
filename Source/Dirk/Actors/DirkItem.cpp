@@ -17,8 +17,7 @@ ADirkItem::ADirkItem()
     MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
     MeshComponent->SetupAttachment(RootComponent);
 
-    // Register OnInteract Event
-    InteractComponent->OnInteract.AddDynamic(this, &ADirkItem::PickUp);
+    // Tells actor that it can never tick
     PrimaryActorTick.bCanEverTick = false;
 }
 
@@ -31,7 +30,7 @@ void ADirkItem::PickUp(AActor* OtherActor)
     {
         Character = Cast<ADirkCharacter>(OtherActor);
         // Check is the character has already has an item
-        if (!Character->GetHasItem())
+        if (!Character->GetItem())
         {
             // Attach this actor to Character
             FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
@@ -40,7 +39,7 @@ void ADirkItem::PickUp(AActor* OtherActor)
             SetOwner(Character);
 
             // Tell Character that it has an item
-            Character->SetHasItem(true);
+            Character->SetItem(this);
             
             // Set up action bindings
             if (APlayerController* PlayerController = Cast<APlayerController>(Character->GetController()))

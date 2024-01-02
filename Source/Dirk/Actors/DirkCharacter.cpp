@@ -2,6 +2,8 @@
 
 #include "DirkCharacter.h"
 
+#include "DirkItem.h"
+
 // Constructer, blocks creation of mesh component
 ADirkCharacter::ADirkCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer.DoNotCreateDefaultSubobject(ACharacter::MeshComponentName))
@@ -47,6 +49,8 @@ void ADirkCharacter::BeginPlay()
 	}
 }
 
+// Input and movement
+
 // Setup input
 void ADirkCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -90,5 +94,40 @@ void ADirkCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+// Character item
+
+// Sets the characters item
+bool ADirkCharacter::SetItem(ADirkItem* Item)
+{
+	using enum EDirkCharacterAnimStatus;
+	// Assign param to class variable
+	DirkItem = Item;
+	// Check if the there is an item
+	if (DirkItem)
+	{
+		// Sets AnimStatus based on the type of the Item
+		switch (DirkItem->GetItemType())
+		{
+			case EDirkItemType::BLADE_WEAPON:
+				AnimStatus = BLADE_WEAPON_ITEM;
+				break;
+			case EDirkItemType::PROJECTILE_WEAPON:
+				AnimStatus = PROJECTILE_WEAPON_ITEM;
+				break;
+			default:
+				AnimStatus = DEFAULT;
+				break;
+		}
+
+		return true;
+	}
+	else 
+	{
+		// Set the animation status to its default value
+		AnimStatus = DEFAULT;
+		return false;
 	}
 }

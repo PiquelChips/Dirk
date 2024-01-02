@@ -28,15 +28,18 @@ public:
 
 	// Fired when Use key is pressed
 	virtual void Use();
+	
+	// Pick up function
+	UFUNCTION()
+	void PickUp(AActor* OtherActor);
+
+	UFUNCTION(BlueprintCallable, Category="Item")
+	EDirkItemType GetItemType() { return ItemType; }
 
 protected:
 
 	// Called when actor leaves the game (destroyed)
 	void EndPlay(EEndPlayReason::Type EndPlayReason) override;
-	
-	// Pick up function
-	UFUNCTION()
-	void PickUp(AActor* OtherActor);
 	
 	// Components
 
@@ -86,4 +89,8 @@ private:
 	// Static class to spawn on drop
 	UPROPERTY(EditAnywhere, Category="PickUp/Drop")
 	UClass* RespawnClass = ADirkItem::StaticClass();
+
+	// Item type
+	UPROPERTY(EditAnywhere, Category="Item")
+	TEnumAsByte<EDirkItemType> ItemType = EDirkItemType::BLADE_WEAPON;
 };
