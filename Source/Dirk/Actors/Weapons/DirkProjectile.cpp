@@ -18,13 +18,6 @@ ADirkProjectile::ADirkProjectile()
     MoveComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MoveComponent"));
 }
 
-// Setter for Projctile speed
-void ADirkProjectile::SetProjectileSpeed(float NewSpeed)
-{
-	MoveComponent->MaxSpeed = NewSpeed;
-	MoveComponent->InitialSpeed = NewSpeed;
-}
-
 // Called when the projectile hits something
 void ADirkProjectile::OnHit(
     UPrimitiveComponent* HitComp,

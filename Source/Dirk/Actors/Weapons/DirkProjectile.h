@@ -18,13 +18,10 @@ class DIRK_API ADirkProjectile : public ADirkActor
 {
 	GENERATED_BODY()
 
-	// Constructor
-	ADirkProjectile();
-
 public:
 
-	// Sets projectile speed
-	void SetProjectileSpeed(float NewSpeed);
+	// Constructor
+	ADirkProjectile();
 
 protected:
 
