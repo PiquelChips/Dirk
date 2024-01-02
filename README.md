@@ -30,7 +30,7 @@ UI:
   - Crosshair
   - Interact on interactable
 - Loading Screen:
-  - List of tips
+  - List of tips (displayed randomly)
   - Progress bar if needed
 
 SaveGames:
@@ -41,19 +41,20 @@ SaveGames:
 Gameplay:
 - Do Ingame Controller elements not in playercontroller (to implement AI)
 - Add health
-- Turn Weapon component into ProjectileWeapon actor (use arrow component instead of projectile offset)
+- Turn Weapon component into ProjectileWeapon actor (use arrow component instead of projectile offset) // Fix firing effects
 - Turn Teleport component into actor and add effects (destination and origin)
 - Create blade weapon actor
 - Setup damage system (projectile and blade)
 - Crouch/Slide
 - Fall damage
-- DirkItem:
-  - Generic class for pickupable items
-  - Create enum for item type (link to anims)
-  - Remove pickup component and intergrate with DirkItem, setup SetItem method in Dirk character that handls snapping and ownership tranfser
-- Move Interact Cooldown from pickup to Interact component
 - Add water and swimming
 - Vehicles/mounts:
+
+Localisation:
+- Setup way to manage efficiently
+- Languages:
+  - French
+  - German
 
 C++ and Blueprints:
 - Clean up and comment code
