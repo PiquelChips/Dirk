@@ -6,11 +6,12 @@ void FLineComponentVisualizer::DrawVisualization(const UActorComponent* Componen
 {
     // Get LineComponent
     const ULineComponent* LineComponent = Cast<ULineComponent>(Component);
+    // Check if its valid
     if (LineComponent)
     {
         PDI->DrawLine(LineComponent->GetOwner()->GetActorLocation(), 
-            LineComponent->GetComponentLocation(), 
-            FLinearColor::Red, 
+            LineComponent->GetComponentLocation(),
+            FLinearColor::Red,
             SDPG_Foreground
         );
     }

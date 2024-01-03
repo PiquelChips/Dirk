@@ -56,6 +56,11 @@ private:
 
 	// Called when the projectile hits something
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+	// Server RPC for NetMulticast and actor destruction
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_Hit(AActor* OtherActor, UPrimitiveComponent* OtherComp);
+	bool Server_Hit_Validate(AActor* OtherActor, UPrimitiveComponent* OtherComp);
+	void Server_Hit_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComp);
 	// Net multicast for sound and particles
 	UFUNCTION(NetMulticast, Reliable, WithValidation)
 	void Multi_Hit();

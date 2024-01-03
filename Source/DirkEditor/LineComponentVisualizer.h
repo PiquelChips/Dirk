@@ -8,7 +8,9 @@
 
 class DIRKEDITOR_API FLineComponentVisualizer : public FComponentVisualizer
 {
+
 public:
 	void DrawVisualization(const UActorComponent* Component, const FSceneView* View, FPrimitiveDrawInterface* PDI) override;
+	
 };
 

@@ -27,6 +27,43 @@ void ADirkProjectile::OnHit(
     const FHitResult& Hit
 )
 {
+    if (!HasAuthority()) { Server_Hit(OtherActor, OtherComp); }
+    else
+    {
+        // Added Impulse on Component that was hit
+        OtherComp->AddImpulseAtLocation(GetVelocity()/* * 100.0f*/, GetActorLocation());
+        
+        // Plays effects
+        Multi_Hit();
+
+        // Check if hit a Dirk Character
+        if (ADirkCharacter* OtherCharacter = Cast<ADirkCharacter>(OtherActor))
+        {
+            // TODO: Implement Damaging Function
+        }
+
+        // Checks if the actor should be destroyed when hitssomething
+        if (bShouldDestroyOnHit)
+            Destroy();
+
+    }
+    
+}
+
+// Hit Server RPC
+
+// Validation
+bool ADirkProjectile::Server_Hit_Validate(AActor* OtherActor, UPrimitiveComponent* OtherComp) { return true; }
+// Implementation
+void ADirkProjectile::Server_Hit_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComp) 
+{
+    // Added Impulse on Component that was hit
+    OtherComp->AddImpulseAtLocation(GetVelocity()/* * 100.0f*/, GetActorLocation());
+
+    // Plays effects
+    Multi_Hit();
+
+    // CHeck if hit a DirkCharacter
     if (ADirkCharacter* OtherCharacter = Cast<ADirkCharacter>(OtherActor))
     {
         // TODO: Implement Damaging Function
@@ -36,8 +73,6 @@ void ADirkProjectile::OnHit(
     if (bShouldDestroyOnHit)
         Destroy();
 
-    // Plays effects
-    Multi_Hit();
 }
 
 // Hit multicast
