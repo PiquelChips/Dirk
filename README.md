@@ -41,7 +41,6 @@ SaveGames:
 Gameplay:
 - Do Ingame Controller elements not in playercontroller (to implement AI)
 - Add health
-- Add effect and impulse on DirkProjectile hit ----> CHECK FOR MULTIPLAYER <----
 - Create blade weapon actor
 - Setup damage system (projectile and blade)
 - Crouch/Slide
