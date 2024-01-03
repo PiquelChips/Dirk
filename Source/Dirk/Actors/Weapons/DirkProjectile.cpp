@@ -32,7 +32,7 @@ void ADirkProjectile::OnHit(
     {
         // Added Impulse on Component that was hit
         OtherComp->AddImpulseAtLocation(GetVelocity()/* * 100.0f*/, GetActorLocation());
-        
+
         // Plays effects
         Multi_Hit();
 
@@ -45,9 +45,7 @@ void ADirkProjectile::OnHit(
         // Checks if the actor should be destroyed when hitssomething
         if (bShouldDestroyOnHit)
             Destroy();
-
     }
-    
 }
 
 // Hit Server RPC
@@ -72,7 +70,6 @@ void ADirkProjectile::Server_Hit_Implementation(AActor* OtherActor, UPrimitiveCo
     // Checks if the actor should be destroyed when hitssomething
     if (bShouldDestroyOnHit)
         Destroy();
-
 }
 
 // Hit multicast

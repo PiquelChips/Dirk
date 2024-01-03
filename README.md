@@ -49,7 +49,6 @@ Gameplay:
 - Vehicles/mounts:
 
 Localisation:
-- Setup way to manage efficiently
 - Languages:
   - French
   - German
