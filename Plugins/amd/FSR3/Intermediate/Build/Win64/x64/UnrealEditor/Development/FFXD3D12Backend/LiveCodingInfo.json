@@ -1,8 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.FFXD3D12Backend.cpp.obj": [
-			"FFXD3D12Backend.cpp.obj"
-		]
-	}
-}

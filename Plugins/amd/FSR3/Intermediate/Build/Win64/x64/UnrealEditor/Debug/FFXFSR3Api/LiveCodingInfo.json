@@ -1,9 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.FFXFSR3Api.cpp.obj": [
-			"FFXFSR3.cpp.obj",
-			"FFXFSR3Module.cpp.obj"
-		]
-	}
-}

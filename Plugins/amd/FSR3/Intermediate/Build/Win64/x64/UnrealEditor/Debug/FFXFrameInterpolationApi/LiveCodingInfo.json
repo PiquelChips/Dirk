@@ -1,9 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.FFXFrameInterpolationApi.cpp.obj": [
-			"FFXFrameInterpolationApi.cpp.obj",
-			"FFXFrameInterpolationApiModule.cpp.obj"
-		]
-	}
-}

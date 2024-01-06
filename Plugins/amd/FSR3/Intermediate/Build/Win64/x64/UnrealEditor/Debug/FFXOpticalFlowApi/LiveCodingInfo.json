@@ -1,9 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.FFXOpticalFlowApi.cpp.obj": [
-			"FFXOpticalFlowApi.cpp.obj",
-			"FFXOpticalFlowApiModule.cpp.obj"
-		]
-	}
-}
