@@ -39,6 +39,7 @@ SaveGames:
 - Autosaves (custom time)
 
 Gameplay:
+- Add arrow to DirkTeleporter
 - Do Ingame Controller elements not in playercontroller (to implement AI)
 - Add health
 - Create blade weapon actor

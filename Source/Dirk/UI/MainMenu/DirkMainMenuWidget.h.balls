@@ -1,0 +1,90 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "SlateBasics.h"
+#include "SlateExtras.h"
+#include "../DirkHUD.h"
+#include "../../Core/DirkPlayerController.h"
+
+class SDirkMainMenuWidget : public SCompoundWidget
+{
+
+public:
+
+	// Parameters of widget
+    SLATE_BEGIN_ARGS(SDirkMainMenuWidget) {}
+
+	    // Add owning HUD as a Widget Argument
+	  	SLATE_ARGUMENT(TWeakObjectPtr<class ADirkHUD>, OwningHUD)
+
+    SLATE_END_ARGS()
+    
+    // Widget constructor
+    void Construct(const FArguments& InArgs);
+    
+	// idk
+    virtual bool SupportsKeyboardFocus() const override { return true; }
+
+private:
+
+    // Important variables 
+    TWeakObjectPtr<ADirkHUD> OwningHUD;
+    TWeakObjectPtr<ADirkPlayerController> OwningPlayerController;
+
+    // Widgets
+
+    // Main Overlay
+    TSharedPtr<SOverlay> MainOverlay;
+    // Backgrounds
+    TSharedPtr<SImage> BackgroundImage;
+//    TSharedPtr<SBackgroundBlur> BackgroundBlur;
+        // Main box
+        TSharedPtr<SHorizontalBox> MainBox;
+        // Main menu box
+            TSharedPtr<SVerticalBox> MainMenuBox;
+            // Play Button
+            const FText NewGameText = NSLOCTEXT("MainMenuText", "NewGame", "New Game");
+            const FText ContinueText = NSLOCTEXT("MainMenuText", "ContinueGame", "Continue");
+            // SaveJoin Button
+            const FText SaveText = NSLOCTEXT("MainMenuText", "SaveGame", "Save Game");
+            const FText JoinText = NSLOCTEXT("MainMenuText", "JoinGame", "Join Game");
+            // Load Game Button
+            const FText LoadText = NSLOCTEXT("MainMenuText", "LoadGame", "Load Game");
+            // Settings Button
+            const FText SettingsText = NSLOCTEXT("MainMenuText", "Settings", "Settings");
+            // Credits Button
+            const FText CreditsText = NSLOCTEXT("MainMenuText", "Credits", "Credits");
+            // MainMenu Button
+            const FText MainMenuText = NSLOCTEXT("MainMenuText", "MainMenu", "Quit to main menu");
+            // Desktop Button
+            const FText DesktopText = NSLOCTEXT("MainMenuText", "Desktop", "Quit to desktop");
+        // Join Box
+        TSharedPtr<SVerticalBox> JoinBox;
+            TSharedPtr<SVerticalBox> JoinVerticalBox;
+            // Text explanation for join
+            const FText JoinInfoText = NSLOCTEXT("MainMenuText", "JoinInfo", "Enter IP Adresse of distant server or listen client");
+            const FText IPAdresseText = NSLOCTEXT("MainMenuText", "IpAdresse", "IP Adresse");
+            // Where submitted text is stored
+            FText SubmittedJoinText;
+            // Error Text
+            const FText JoinErrorText = NSLOCTEXT("MainMenuText", "JoinError", "Please enter valid IP adresse");
+
+    // Display various elements of the menu
+
+    // Functions called by various buttons
+    FReply NewGame();
+    FReply CloseMenu();
+    FReply JoinGame();
+    FReply JoinButton();
+    FReply CloseJoin();
+    FReply SaveGame();
+    FReply LoadGame();
+    FReply Settings();
+    FReply Credits();
+    FReply QuitMainMenu();
+    FReply QuitDesktop();
+
+    void Join(const FText& SubmittedText = FText(), ETextCommit::Type TextType = ETextCommit::Type::OnEnter);
+
+};

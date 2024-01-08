@@ -1,0 +1,380 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#include "DirkMainMenuWidget.h"
+
+void SDirkMainMenuWidget::Construct(const FArguments& InArgs)
+{
+
+    const FMargin MainPadding = FMargin(50.f, 50.f);
+
+    // Idk
+    bCanSupportFocus = true;
+
+    // Get owning hud and owning player controller
+    OwningHUD = InArgs._OwningHUD;
+    OwningPlayerController = Cast<ADirkPlayerController>(OwningHUD->PlayerOwner);
+
+    ChildSlot [ SAssignNew(MainOverlay, SOverlay) ];
+
+    // Check if player is ingame and build menu
+    if (OwningPlayerController->IsInGame())
+    {
+        // Pause menu
+        MainOverlay->AddSlot()
+        .HAlign(HAlign_Fill)
+        .VAlign(VAlign_Fill)
+        [ SAssignNew(BackgroundImage, SImage).ColorAndOpacity(FColor::Blue) ];
+        MainOverlay->AddSlot()
+        .HAlign(HAlign_Left)
+        .VAlign(VAlign_Top)
+        .Padding(MainPadding)
+        [
+            SAssignNew(MainBox, SHorizontalBox)
+            + SHorizontalBox::Slot()
+            [
+                SAssignNew(MainMenuBox, SVerticalBox)
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 100.f))
+                ]
+
+                // COntinue Button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::CloseMenu)
+                    [
+                        SNew(STextBlock)
+                        .Text(ContinueText)
+                    ]
+                ]
+
+                // Join Game Button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::JoinGame)
+                    [
+                        SNew(STextBlock)
+                        .Text(JoinText)
+                    ]
+                ]
+
+                // Load game button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::LoadGame)
+                    [
+                        SNew(STextBlock)
+                        .Text(LoadText)
+                    ]
+                ]
+
+                // Spacer
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 50.f))
+                ]
+
+                // Settings button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::Settings)
+                    [
+                        SNew(STextBlock)
+                        .Text(SettingsText)
+                    ]
+                ]
+
+                // Credits button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::Credits)
+                    [
+                        SNew(STextBlock)
+                        .Text(CreditsText)
+                    ]
+                ]
+
+                // Spacer
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 50.f))
+                ]
+
+                // Main menu button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::QuitMainMenu)
+                    [
+                        SNew(STextBlock)
+                        .Text(MainMenuText)
+                    ]
+                ]
+
+                // Quit to desktop button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::QuitDesktop)
+                    [
+                        SNew(STextBlock)
+                        .Text(DesktopText)
+                    ]
+                ]
+            ]
+        ];
+    }
+    else
+    {
+        // Main Menu
+        MainOverlay->AddSlot()
+        .HAlign(HAlign_Fill)
+        .VAlign(VAlign_Fill)
+        [ SAssignNew(BackgroundImage, SImage).ColorAndOpacity(FColor::Blue) ];
+        MainOverlay->AddSlot()
+        .HAlign(HAlign_Left)
+        .VAlign(VAlign_Top)
+        .Padding(MainPadding)
+        [
+            SAssignNew(MainBox, SHorizontalBox)
+            + SHorizontalBox::Slot()
+            [
+                // Tite image
+                SAssignNew(MainMenuBox, SVerticalBox)
+                + SVerticalBox::Slot()
+                [
+                    SNew(SImage)
+                    .ColorAndOpacity(FColor::White)
+                ]
+
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 100.f))
+                ]
+
+                // New Game Button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::NewGame)
+                    [
+                        SNew(STextBlock)
+                        .Text(NewGameText)
+                    ]
+                ]
+
+                // Join Game Button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::JoinGame)
+                    [
+                        SNew(STextBlock)
+                        .Text(JoinText)
+                    ]
+                ]
+
+                // Load game button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::LoadGame)
+                    [
+                        SNew(STextBlock)
+                        .Text(LoadText)
+                    ]
+                ]
+
+                // Spacer
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 50.f))
+                ]
+
+                // Settings button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::Settings)
+                    [
+                        SNew(STextBlock)
+                        .Text(SettingsText)
+                    ]
+                ]
+
+                // Credits button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::Credits)
+                    [
+                        SNew(STextBlock)
+                        .Text(CreditsText)
+                    ]
+                ]
+
+                // Spacer
+                + SVerticalBox::Slot()
+                [
+                    SNew(SSpacer)
+                    .Size(FVector2D(1.f, 50.f))
+                ]
+
+                // Quit to desktop button
+                + SVerticalBox::Slot()
+                [
+                    SNew(SButton)
+                    .OnClicked(this, &SDirkMainMenuWidget::QuitDesktop)
+                    [
+                        SNew(STextBlock)
+                        .Text(DesktopText)
+                    ]
+                ]
+            ]
+        ];
+    }
+}
+
+FReply SDirkMainMenuWidget::NewGame()
+{
+    OwningPlayerController->OpenEntryLevel();
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::JoinGame()
+{
+    MainOverlay->AddSlot()
+    .HAlign(HAlign_Center)
+    .VAlign(VAlign_Center)
+    [
+        SAssignNew(JoinBox, SVerticalBox)
+        // Top bar
+        + SVerticalBox::Slot()
+        [
+            SNew(SHorizontalBox)
+            + SHorizontalBox::Slot()
+            [
+                SNew(SImage)
+                .ColorAndOpacity(FColor(255, 255, 255, 255))
+            ]
+            + SHorizontalBox::Slot()
+            [
+                SNew(SButton)
+                .OnClicked(this, &SDirkMainMenuWidget::CloseJoin)
+                [
+                    SNew(SImage)
+                    .ColorAndOpacity(FColor::White)
+                ]
+            ]
+        ]
+        // Middle section
+        + SVerticalBox::Slot()
+        [
+            SAssignNew(JoinVerticalBox, SVerticalBox)
+            + SVerticalBox::Slot()
+            [
+                SNew(STextBlock)
+                .Text(JoinInfoText)
+            ]
+            + SVerticalBox::Slot()
+            [
+                SNew(SEditableTextBox)
+                .Text(IPAdresseText)
+                .OnTextCommitted(this, &SDirkMainMenuWidget::Join)
+            ]
+        ]
+        // Bottom section
+        + SVerticalBox::Slot()
+        [
+            SNew(SHorizontalBox)
+            + SHorizontalBox::Slot()
+            [
+                SNew(SImage)
+                .ColorAndOpacity(FColor::White)
+            ]
+            + SHorizontalBox::Slot()
+            [
+                SNew(SButton)
+                .OnClicked(this, &SDirkMainMenuWidget::JoinButton)
+                [
+                    SNew(STextBlock)
+                    .Text(JoinText)
+                ]
+            ]
+            + SHorizontalBox::Slot()
+            [
+                SNew(SImage)
+                .ColorAndOpacity(FColor::White)
+            ]
+        ]
+    ];
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::JoinButton() { Join(); return FReply::Handled(); }
+
+FReply SDirkMainMenuWidget::CloseJoin()
+{
+    
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::SaveGame()
+{
+    GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, TEXT("SaveGame"));
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::LoadGame()
+{
+    GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, TEXT("LoadGame"));
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::Settings()
+{
+    GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, TEXT("Settings"));
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::Credits()
+{
+    GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, TEXT("Credits"));
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::QuitMainMenu()
+{
+    OwningPlayerController->OpenMenuLevel();
+
+    return FReply::Handled();
+}
+
+FReply SDirkMainMenuWidget::QuitDesktop()
+{
+    OwningPlayerController->ConsoleCommand("quit");
+
+    return FReply::Handled();
+}
+
+void SDirkMainMenuWidget::Join(const FText& SubmittedText, ETextCommit::Type TextType)
+{
+    GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, TEXT("Join"));
+}

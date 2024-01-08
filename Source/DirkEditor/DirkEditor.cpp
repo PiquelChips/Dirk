@@ -9,11 +9,11 @@ void FDirkEditorModule::StartupModule()
     if (GUnrealEd)
     {
         // Register the Line visualizer
-        TSharedPtr<FLineComponentVisualizer> LineVisualizer = MakeShareable(new FLineComponentVisualizer);
-        if (LineVisualizer.IsValid())
+        TSharedPtr<FDirkLineComponentVisualizer> DirkLineVisualizer = MakeShareable(new FDirkLineComponentVisualizer);
+        if (DirkLineVisualizer.IsValid())
         {
-            GUnrealEd->RegisterComponentVisualizer(ULineComponent::StaticClass()->GetFName(), LineVisualizer);
-            LineVisualizer->OnRegister();
+            GUnrealEd->RegisterComponentVisualizer(UDirkLineComponent::StaticClass()->GetFName(), DirkLineVisualizer);
+            DirkLineVisualizer->OnRegister();
         }
     }
 }
@@ -25,6 +25,6 @@ void FDirkEditorModule::ShutdownModule()
     if (GUnrealEd)
     {
         // Unregister Tleport Component visualizer
-        GUnrealEd->UnregisterComponentVisualizer(ULineComponent::StaticClass()->GetFName());
+        GUnrealEd->UnregisterComponentVisualizer(UDirkLineComponent::StaticClass()->GetFName());
     }
 }

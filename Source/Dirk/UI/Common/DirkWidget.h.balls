@@ -1,0 +1,35 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "SlateBasics.h"
+#include "SlateExtras.h"
+#include "../DirkHUD.h"
+#include "../../Core/DirkPlayerController.h"
+
+class SDirkWidget : public SCompoundWidget
+{
+
+public:
+
+	// Parameters of widget
+    SLATE_BEGIN_ARGS(SDirkWidget) {}
+
+	    // Add owning HUD as a Widget Argument
+	  	SLATE_ARGUMENT(TWeakObjectPtr<class ADirkHUD>, OwningHUD)
+
+    SLATE_END_ARGS()
+
+    // Widget constructor
+    void Construct(const FArguments& InArgs);
+    
+	// idk
+    virtual bool SupportsKeyboardFocus() const override { return true; }
+
+protected:
+
+    // Important variables 
+    TWeakObjectPtr<ADirkHUD> OwningHUD;
+    TWeakObjectPtr<ADirkPlayerController> OwningPlayerController;
+
+};
